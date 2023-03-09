@@ -56,7 +56,13 @@ frase[frase.length-1];
 // Retorne o total de taxas
 let transacoes2 = ['Taxa do Banco', '   TAXA DO PÃO', '  taxa do mercado', 'depósito Bancário', 'TARIFA especial'];
 
+let i = 0;
+
 transacoes2.forEach((item) => {
   item = item.toLowerCase();
-  console.log(item);
+  if(item.includes("taxa")) {
+    i++;
+  }
 })
+
+console.log(i);
