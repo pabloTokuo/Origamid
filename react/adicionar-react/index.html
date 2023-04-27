@@ -19,16 +19,54 @@
   <div id="root"></div>
 
   <script type="text/babel">
-    function Button() {
-      const [total, setTotal] = React.useState(0);
-      return <button onClick={() => setTotal(total + 1)}>Adicionar {total}</button>
+    const Button = () => {
+      return <button>Comprar</button>;
     }
 
-    function App() {
+    const MainNav = () => {
+      return <nav>
+        <ul>
+          <li><a href="#">Link 1</a></li>
+          <li><a href="#">Link 2</a></li>
+        </ul>
+      </nav>
+    }
+
+    const Produtos = () => {
+      const produto1 = 'Camisa';
+      const produto2 = 'Bermuda';
+
+      function handleClick(e) {
+        console.log('Comprou: ' + e.target.innerText);
+      }
+
       return <div>
-        <h1>Aplicativo React</h1>
-        <Button />
+        <button onClick={handleClick}>{produto1} - R$ {(Math.random() * 100).toFixed(2)}</button>
+        <button onClick={handleClick}>{produto2} - R$ {(Math.random() * 100).toFixed(2)}</button>
       </div>
+    }
+
+    const Comprar = () => {
+      const [count, setCount] = React.useState(0);
+      function handleClick() {
+        setCount(count + 1);
+      }
+
+      return <div>
+        <button onClick={handleClick}>Comprar: {count}</button>
+        <p>Total: {count}</p>
+        <p>Preco: {count * 250}</p>
+      </div>
+    }
+
+    const App = () => {
+      return <div>
+        <h1>Teste</h1>
+        <MainNav />
+        <Button />
+        <Produtos />
+        <Comprar />
+      </div>;
     }
 
     const container = document.getElementById('root');
