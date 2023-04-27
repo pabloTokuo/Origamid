@@ -17,3 +17,16 @@ function handleMouseMove({ clientX, clientY }) {
 }
 
 document.documentElement.addEventListener('mousemove', handleMouseMove);
+
+const frutas = ['Banana', 'Uva'];
+const [fruta1, fruta2] = frutas;
+// fruta1 = banana
+// fruta2 = Uva
+
+const useQuadrado = [
+  4,
+  function (lado) {
+    return 4 * lado;
+  },
+];
+const [lados, area] = useQuadrado;
