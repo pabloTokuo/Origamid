@@ -1,9 +1,14 @@
-import Form from './Form/Form';
+import Header from './App/Header';
+import Home from './App/Home';
+import Produtos from './App/Produtos';
 
 const App = () => {
+  const { pathname } = window.location;
   return (
     <>
-      <Form />
+      <Header />
+      {pathname.includes('home') && <Home />}
+      {pathname.includes('produtos') && <Produtos />}
     </>
   );
 };
