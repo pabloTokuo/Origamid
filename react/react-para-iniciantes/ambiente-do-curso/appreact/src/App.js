@@ -1,13 +1,24 @@
-const App = () => {
-  function handleScroll(e) {
-    console.log(e);
-  }
-  window.addEventListener('scroll', handleScroll);
+import Footer from './Footer.js';
+import Form from './Form/Form.js';
+import Header from './Header.js';
 
+const Teste = () => {
+  const active = true;
+  if (active) {
+    return <p>Teste</p>;
+  } else {
+    return null;
+  }
+};
+
+const App = () => {
   return (
-    <div style={{ height: '200vh' }}>
-      <button onClick={(e) => alert(e.target.innerText)}>Clique</button>
-    </div>
+    <>
+      <Header />
+      <Form />
+      <Teste />
+      <Footer />
+    </>
   );
 };
 
