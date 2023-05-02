@@ -1,7 +1,12 @@
 import React from 'react';
 
-const Input = () => {
-  return <input type="text" />;
+const Input = ({ label, id, ...props }) => {
+  return (
+    <>
+      <label htmlFor={id}>{label}</label>
+      <input id={id} type="text" {...props} />
+    </>
+  );
 };
 
 export default Input;

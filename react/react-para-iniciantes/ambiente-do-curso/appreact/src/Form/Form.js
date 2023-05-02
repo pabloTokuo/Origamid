@@ -2,20 +2,15 @@ import React from 'react';
 import Input from './Input';
 import Button from './Button';
 
-const Form = () => {
+function Form() {
+  const arr = ['Item 1', 'Item 2'];
   return (
-    <form action="">
-      <p>
-        <label htmlFor="nome">Nome</label>
-        <Input />
-      </p>
-      <p>
-        <label htmlFor="email">Email</label>
-        <Input />
-      </p>
-      <Button />
-    </form>
+    <div style={{ margin: '1rem 0', display: 'flex', flexDirection: 'column' }}>
+      <Input id="email" label="Email" required />
+      <Input id="password" label="Password" type="password" />
+      <Button items={arr} />
+    </div>
   );
-};
+}
 
 export default Form;
