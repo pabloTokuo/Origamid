@@ -1,26 +1,36 @@
 import React from 'react';
-import ButtonModal from './ButtonModal';
-import Modal from './Modal';
+import Produtos from './Produtos';
 
 const App = () => {
-  const [modal, setModal] = React.useState(false);
-  const [items, setItems] = React.useState(['Item 1']);
-  const [contar, setContar] = React.useState(1);
+  const [dados, setDados] = React.useState();
+  const [carregando, setCarregando] = React.useState();
 
-  const handleClick = () => {
-    setContar(contar + 1);
-    setItems([...items, 'Item ' + (contar + 1)]);
-  };
+  async function handleFetchClick(event) {
+    setCarregando(true);
+    const response = await fetch(
+      `https://ranekapi.origamid.dev/json/api/produto/${event.target.innerText}`,
+    );
+
+    const json = await response.json();
+
+    setDados(json);
+    setCarregando(false);
+  }
 
   return (
-    <div>
-      {items.map((item, i) => (
-        <li key={i}>{item}</li>
-      ))}
-      <button onClick={handleClick}>{contar}</button>
-      <Modal modal={modal} setModal={setModal} />
-      <ButtonModal setModal={setModal} />
-    </div>
+    <>
+      <button style={{ margin: '.5rem' }} onClick={handleFetchClick}>
+        Smartphone
+      </button>
+      <button style={{ margin: '.5rem' }} onClick={handleFetchClick}>
+        Tablet
+      </button>
+      <button style={{ margin: '.5rem' }} onClick={handleFetchClick}>
+        Notebook
+      </button>
+      {carregando && <p>Carregando...</p>}
+      {!carregando && dados && <Produtos dados={dados} />}
+    </>
   );
 };
 
