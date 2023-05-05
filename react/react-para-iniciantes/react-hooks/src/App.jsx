@@ -1,38 +1,24 @@
-import React, { useState, useEffect } from 'react';
-import Produto from './Produto';
-
-// Quando o usuário clicar em um dos botões, faça um fetch do produto clicado utilizando a api abaixo
-// https://ranekapi.origamid.dev/json/api/produto/notebook
-// https://ranekapi.origamid.dev/json/api/produto/smartphone
-// Mostre o nome e preço na tela (separe essa informação em um componente Produto.js)
-// Defina o produto clicado como uma preferência do usuário no localStorage
-// Quando o usuário entrar no site, se existe um produto no localStorage, faça o fetch do mesmo
+import React from 'react';
 
 const App = () => {
-  const [nomeProduto, setProduto] = useState(null);
+  const [carrinho, setCarrinho] = React.useState(0);
+  const [notificacao, setNotificacao] = React.useState(null);
+  const timeoutRef = React.useRef();
 
-  useEffect(() => {
-    const localStore = window.localStorage.getItem('ultimoProduto');
-    setProduto(localStore);
-  }, []);
+  function handleClick() {
+    setCarrinho(carrinho + 1);
+    setNotificacao('Item adicionado ao carrinho');
 
-  useEffect(() => {
-    if (nomeProduto !== null)
-      window.localStorage.setItem('ultimoProduto', nomeProduto);
-  }, [nomeProduto]);
-
-  function handleClick({ target }) {
-    setProduto(target.innerText);
+    clearTimeout(timeoutRef.current);
+    timeoutRef.current = setTimeout(() => {
+      setNotificacao(null);
+    }, 2000);
   }
 
   return (
     <div>
-      <h1>Preferencia: {nomeProduto}</h1>
-      <button style={{ marginRight: '0.5rem' }} onClick={handleClick}>
-        notebook
-      </button>
-      <button onClick={handleClick}>smartphone</button>
-      <Produto produto={nomeProduto} />
+      <p>{notificacao}</p>
+      <button onClick={handleClick}>Adicionar carrinho {carrinho}</button>
     </div>
   );
 };
