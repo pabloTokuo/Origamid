@@ -1,6 +1,6 @@
 import React from 'react';
 import Produto from './Produto';
-import { GlobalStorage } from './GlobalContext';
+import { GlobalStorage } from './GlobalStorage';
 
 const App = () => {
   return (

@@ -1,18 +1,19 @@
 import React from 'react';
-import { GlobalContext } from './GlobalContext';
+import { GlobalContext } from './GlobalStorage';
 
 const Produto = () => {
   const global = React.useContext(GlobalContext);
-  console.log(global);
 
-  function handleClick() {
-    global.setContar((numero) => numero + 1);
-  }
-
+  if (global.dados === null) return null;
   return (
     <div>
-      Produto: {global.contar}
-      <button onClick={() => global.adicionarDois()}>Adicionar</button>
+      {global.dados.map((produto, index) => (
+        <div key={index}>
+          <li>{produto.nome}</li>
+          <p>{produto.preco}</p>
+        </div>
+      ))}
+      <button onClick={() => global.limparDados()}>Limpar Dados</button>
     </div>
   );
 };
