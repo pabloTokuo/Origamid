@@ -1,22 +1,25 @@
 import React from 'react';
 
 function App() {
-  const [select, setSelect] = React.useState('');
+  const [radio, setRadio] = React.useState('');
+
   return (
     <form action="">
-      <select
-        value={select}
-        onChange={({ target }) => setSelect(target.value)}
-        id="produtos"
-      >
-        <option disabled value="">
-          Selecione
-        </option>
-        <option value="notebook">Notebook</option>
-        <option value="smartphone">Smartphone</option>
-        <option value="tablet">Tablet</option>
-      </select>
-      {select}
+      <label>Notebook</label>
+      <input
+        type="radio"
+        value="notebook"
+        name="produto"
+        onChange={({ target }) => setRadio(target.value)}
+      />
+      <label>Smartphone</label>
+      <input
+        type="radio"
+        value="smartphone"
+        name="produto"
+        onChange={({ target }) => setRadio(target.value)}
+      />
+      {radio}
     </form>
   );
 }
