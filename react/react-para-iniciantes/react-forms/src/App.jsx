@@ -1,35 +1,21 @@
 import React from 'react';
-
-const coresArray = ['azul', 'roxo', 'laranja', 'verde', 'vermelho', 'cinza'];
+import Input from './Form/Input';
 
 function App() {
-  const [cores, setCores] = React.useState([]);
-
-  function handleChange({ target }) {
-    if (target.checked) {
-      setCores([...cores, target.value]);
-    } else {
-      setCores(cores.filter((cor) => cor !== target.value));
-    }
-  }
-
-  function handleChecked(cor) {
-    return cores.includes(cor);
-  }
+  const [nome, setNome] = React.useState('');
+  const [email, setEmail] = React.useState('');
 
   return (
     <form>
-      {coresArray.map((cor, index) => (
-        <label key={index} style={{ textTransform: 'capitalize' }}>
-          <input
-            type="checkbox"
-            value={cor}
-            checked={handleChecked(cor)}
-            onChange={handleChange}
-          />
-          {cor}
-        </label>
-      ))}
+      <Input id="nome" label="Nome" value={nome} setValue={setNome} />
+      <Input
+        id="email"
+        label="Email"
+        value={email}
+        setValue={setEmail}
+        required
+      />
+      <button>Enviar</button>
     </form>
   );
 }
