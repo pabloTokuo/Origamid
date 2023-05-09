@@ -1,16 +1,22 @@
 import React from 'react';
 
 function App() {
-  const [textarea, setTextarea] = React.useState('');
-
+  const [select, setSelect] = React.useState('');
   return (
     <form action="">
-      <textarea
-        value={textarea}
-        rows="5"
-        onChange={({ target }) => setTextarea(target.value)}
-      ></textarea>
-      {textarea}
+      <select
+        value={select}
+        onChange={({ target }) => setSelect(target.value)}
+        id="produtos"
+      >
+        <option disabled value="">
+          Selecione
+        </option>
+        <option value="notebook">Notebook</option>
+        <option value="smartphone">Smartphone</option>
+        <option value="tablet">Tablet</option>
+      </select>
+      {select}
     </form>
   );
 }
