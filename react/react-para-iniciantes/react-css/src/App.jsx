@@ -1,10 +1,25 @@
 import React from 'react';
-import Produto from './Components/Produto';
+import Slide from './Slide';
 
 function App() {
+  const slides = [
+    {
+      id: 'slide1',
+      text: 'Slide 1',
+    },
+    {
+      id: 'slide2',
+      text: 'Slide 2',
+    },
+    {
+      id: 'slide3',
+      text: 'Slide 3',
+    },
+  ];
+
   return (
     <div>
-      <Produto />
+      <Slide slides={slides} />
     </div>
   );
 }
