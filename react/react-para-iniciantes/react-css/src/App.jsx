@@ -1,25 +1,23 @@
 import React from 'react';
-import Slide from './Slide';
+import foto from './img/foto.jpg';
+import DogSvg from './DogSvg';
 
 function App() {
-  const slides = [
-    {
-      id: 'slide1',
-      text: 'Slide 1',
-    },
-    {
-      id: 'slide2',
-      text: 'Slide 2',
-    },
-    {
-      id: 'slide3',
-      text: 'Slide 3',
-    },
-  ];
+  const [olho, setOlho] = React.useState(0);
+
+  function handleClick() {
+    for (let i = 0; i < 10; i++) {
+      setTimeout(() => {
+        setOlho(i);
+      }, 100 * i);
+    }
+  }
 
   return (
     <div>
-      <Slide slides={slides} />
+      <button onClick={handleClick}>Aumentar Olho</button>
+      <DogSvg color={'tomato'} olho={olho} />
+      <img src={foto} alt="Cachorro" />
     </div>
   );
 }
