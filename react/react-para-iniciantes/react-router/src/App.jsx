@@ -1,32 +1,32 @@
 import React from 'react';
+import './App.css';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import Home from './Home';
-import Sobre from './Sobre';
-import NotFound from './NotFound';
-import Header from './Header';
-import Login from './Login';
-import Produto from './Produto';
-import ProdutoDescricao from './ProdutoDescricao';
-import ProdutoAvaliacao from './ProdutoAvaliacao';
-import ProdutoCustomizado from './ProdutoCustomizado';
+import Produto from './Components/Produto';
+import Header from './Components/Header';
+import Footer from './Components/Footer';
+import Contato from './Components/Contato';
+import Produtos from './Components/Produtos';
 
 const App = () => {
   return (
-    <BrowserRouter>
-      <Header />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="sobre" element={<Sobre />} />
-        <Route path="login" element={<Login />} />
-        <Route path="produto/:id/*" element={<Produto />}>
-          <Route path="" element={<ProdutoDescricao />} />
-          <Route path="avaliacao" element={<ProdutoAvaliacao />} />
-          <Route path="customizado" element={<ProdutoCustomizado />} />
-        </Route>
-        <Route path="*" element={<NotFound />} />
-      </Routes>
-    </BrowserRouter>
+    <div className="App">
+      <BrowserRouter>
+        <Header />
+        <div className="content">
+          <Routes>
+            <Route path="/" element={<Produtos />} />
+            <Route path="produto/:id" element={<Produto />} />
+            <Route path="contato" element={<Contato />} />
+          </Routes>
+        </div>
+        <Footer />
+      </BrowserRouter>
+    </div>
   );
 };
 
 export default App;
+// Utilize a API abaixo para puxar a lista de produto
+// https://ranekapi.origamid.dev/json/api/produto
+// Cada produto possui o id, o mesmo pode ser passado na api para retornar os dados desse produto específico
+// https://ranekapi.origamid.dev/json/api/produto/notebook
