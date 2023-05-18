@@ -10,6 +10,10 @@ const types = {
     regex: /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/,
     message: 'A senha deve conter fraca.',
   },
+  number: {
+    regex: /^\d+$/,
+    message: 'Utilize numeros apenas.',
+  },
 };
 
 const useForm = (type) => {
