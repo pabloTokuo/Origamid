@@ -1,33 +1,40 @@
-interface Empresa {
+interface Curso {
   nome: string;
-  fundacao: number;
-  pais: string;
+  horas: number;
+  aulas: string;
+  gratuito: boolean;
+  tags: string[];
+  idAulas: number[];
+  nivel: 'iniciante' | 'avancado';
 }
 
-interface Produto {
-  nome: string;
-  preco: number;
-  descricao: string;
-  empresaFabricante: Empresa;
-  empresaMontadora: Empresa;
-}
-
-async function fetchProduct() {
-  const response = await fetch('https://api.origamid.dev/json/notebook.json');
+async function fetchCursos() {
+  const response = await fetch('https://api.origamid.dev/json/cursos.json');
   const data = await response.json();
-  showProduct(data);
+  console.log(data);
+  
+  mostrarCursos(data);
 }
 
-fetchProduct();
+fetchCursos();
 
-function showProduct(data: Produto) {
-  document.body.innerHTML = `
+function mostrarCursos(cursos: Curso[]) {
+  cursos.forEach((curso) => {
+    let color;
+    if(curso.nivel === 'iniciante') {
+      color = 'blue';
+    } else {
+      color = 'red';
+    }
+
+    document.body.innerHTML += `
     <div>
-      <h2>${data.nome}</h2>
-      <p>R$ ${data.preco}</p>
-      <p>${data.descricao}</p>
-      <h3>${data.empresaFabricante.nome}</h3>
-      <h3>${data.empresaMontadora.nome}</h3>
-    </div>
-  `;
+      <h2 style="color: ${color};">${curso.nome}</h2>
+      <p>Horas: ${curso.horas}</p>
+      <p>Aulas: ${curso.aulas}</p>
+      <p>Tipo: ${curso.gratuito ? 'Grautio' : 'Pago'}</p>
+      <p>Tags: ${curso.tags.join(', ')}</p>
+      <p>Aulas: ${curso.idAulas.join(', ')}</p>
+    `
+  })
 }
