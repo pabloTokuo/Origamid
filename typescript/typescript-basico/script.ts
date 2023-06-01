@@ -1,40 +1,20 @@
-interface Curso {
-  nome: string;
-  horas: number;
-  aulas: string;
-  gratuito: boolean;
-  tags: string[];
-  idAulas: number[];
-  nivel: 'iniciante' | 'avancado';
-}
+const btnMobile = document.getElementById('btn-mobile');
 
-async function fetchCursos() {
-  const response = await fetch('https://api.origamid.dev/json/cursos.json');
-  const data = await response.json();
-  console.log(data);
-  
-  mostrarCursos(data);
-}
-
-fetchCursos();
-
-function mostrarCursos(cursos: Curso[]) {
-  cursos.forEach((curso) => {
-    let color;
-    if(curso.nivel === 'iniciante') {
-      color = 'blue';
+function toggleMenu(event: PointerEvent) {
+  const button = event.currentTarget;
+  const nav = document.getElementById('nav');
+  if (button instanceof HTMLElement && nav) {
+    const active = nav.classList.contains('active');
+    if (active) {
+      nav.classList.remove('active');
+      button.setAttribute('aria-expanded', 'false');
+      button.setAttribute('aria-label', 'Abrir Menu');
     } else {
-      color = 'red';
+      nav.classList.add('active');
+      button.setAttribute('aria-expanded', 'true');
+      button.setAttribute('aria-label', 'Fechar Menu');
     }
-
-    document.body.innerHTML += `
-    <div>
-      <h2 style="color: ${color};">${curso.nome}</h2>
-      <p>Horas: ${curso.horas}</p>
-      <p>Aulas: ${curso.aulas}</p>
-      <p>Tipo: ${curso.gratuito ? 'Grautio' : 'Pago'}</p>
-      <p>Tags: ${curso.tags.join(', ')}</p>
-      <p>Aulas: ${curso.idAulas.join(', ')}</p>
-    `
-  })
+  }
 }
+
+btnMobile?.addEventListener('pointerdown', toggleMenu);
